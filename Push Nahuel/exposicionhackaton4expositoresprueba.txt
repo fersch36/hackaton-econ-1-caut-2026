@@ -1,0 +1,59 @@
+Informe de Análisis: Estructura de Capital y Actividad Societaria (IGJ)
+Introducción (Expositor 1: El Desafío de los Datos)
+Objetivo del Proyecto: Analizar la distribución de la riqueza corporativa y el cumplimiento legal en la Ciudad de Buenos Aires entre 2019 y 2025.
+
+El Problema Inicial: Nos encontramos con bases de datos administrativas de la IGJ con más de 5 millones de registros. El principal desafío fue la suciedad de los datos:
+
+Localidades mal cargadas (ej. "Sapital Federal").
+
+Campos de capital en formato de texto con comas.
+
+Una concentración masiva en CABA que invisibilizaba el análisis provincial tradicional.
+
+La Decisión Estratégica: Decidimos pivotar de un análisis por "Provincia" a un análisis de "Inteligencia Urbana", clasificando las empresas por sus ejes viales y barrios para encontrar el verdadero pulso económico.
+
+Metodología y Proceso Técnico (Expositor 2: R como Motor de Limpieza)
+Herramientas Utilizadas: RStudio, utilizando principalmente la librería tidyverse para el procesamiento masivo.
+
+El "Motor" de Limpieza:
+
+Normalización Monetaria: Convertimos los valores de texto a numéricos (as.numeric) para poder sumar capitales.
+
+Unificación de Jurisdicción: Usamos expresiones regulares (str_detect) para agrupar todas las variantes de "Capital Federal" y corregir errores de tipeo.
+
+Enriquecimiento Geográfico: Creamos un diccionario de barrios. Mediante un análisis de las calles y avenidas (ej. Florida, Corrientes, Alicia Moreau de Justo), logramos asignar cada empresa a un polo económico real (Microcentro, Puerto Madero, etc.).
+
+Integración: Cruzamos tres tablas clave: Balances, Domicilios y Asambleas, unificándolas por el número correlativo de cada entidad.
+
+Análisis de Resultados y Gráficos (Expositor 3: Los Hallazgos)
+Gráfico 1: Tipos Societarios:
+
+Observamos una hegemonía absoluta de las Sociedades Anónimas (S.A.), seguidas por las Uniones Transitorias.
+
+Dato clave: Las S.A. concentran el capital de mayor volumen, superando ampliamente a las SRL, lo que sugiere que las inversiones de gran escala prefieren estructuras jurídicas más robustas.
+
+Gráfico 2: El Mapa del Capital (Barrios):
+
+El Microcentro y Retiro se consolidan como el corazón financiero indiscutido.
+
+Recoleta/Palermo y Puerto Madero completan el podio, evidenciando una concentración de riqueza en el corredor norte y el eje ribereño de la ciudad.
+
+Gráfico 3: Cumplimiento Institucional:
+
+No solo medimos dinero, sino comportamiento. El Microcentro no solo tiene más plata, sino que es donde más asambleas se realizan. Esto indica una mayor actividad administrativa y transparencia legal en el centro financiero.
+
+Conclusiones y Cierre (Expositor 4: El Valor del Análisis)
+Conclusión General: Existe una correlación directa entre la ubicación geográfica y la estructura jurídica. El "Distrito Financiero" (Microcentro/Retiro) lidera tanto en volumen de capital como en regularidad institucional.
+
+Hallazgos Geográficos: La limpieza de datos nos permitió descubrir que barrios como Caballito y Flores aparecen como polos secundarios emergentes, algo que se perdía en el análisis general inicial.
+
+Valor para la Toma de Decisiones: Este modelo de procesamiento permite a la IGJ identificar zonas de baja actividad o "sociedades dormidas", optimizando la fiscalización.
+
+Reflexión Final: Pasamos de una tabla de 5 millones de filas ilegibles a un mapa de calor económico que explica dónde y cómo se mueve el capital en Buenos Aires.
+
+Recomendaciones para la Exposición:
+Muestren el código brevemente: Tengan una captura del case_when de los barrios para mostrar que "programaron" conocimiento geográfico en el script.
+
+Referencia a la Pandemia: Mencionen que los datos de asambleas se filtraron de 2020 a 2025 para mostrar la resiliencia de las empresas tras la crisis sanitaria.
+
+Seguridad: Si les preguntan por qué hay pocos datos de otras provincias, recuerden: “La IGJ tiene jurisdicción primaria en Capital Federal, por lo que el dataset es, por definición, un mapa del centro económico del país”.
